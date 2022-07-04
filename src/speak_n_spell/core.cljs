@@ -1,11 +1,10 @@
-(ns animal-form.core
+(ns speak-n-spell.core
   (:require
    [reagent.dom :as rdom]
    [re-frame.core :as re-frame]
-   [animal-form.events :as events]
-   [animal-form.views :as views]
-   [animal-form.config :as config]
-   ))
+   [speak-n-spell.events :as events]
+   [speak-n-spell.views :as views]
+   [speak-n-spell.config :as config]))
 
 
 (defn dev-setup []

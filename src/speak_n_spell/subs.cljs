@@ -1,4 +1,4 @@
-(ns animal-form.subs
+(ns speak-n-spell.subs
   (:require
    [re-frame.core :as re-frame]))
 

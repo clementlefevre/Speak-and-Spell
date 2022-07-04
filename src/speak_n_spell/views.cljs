@@ -1,10 +1,12 @@
-(ns animal-form.views
+(ns speak-n-spell.views
   (:require
    [re-frame.core :as re-frame]
-   [animal-form.events :as events]
-   [animal-form.subs :as subs]))
+   [speak-n-spell.events :as events]
+   [speak-n-spell.subs :as subs]))
 
 (def animal-types ["Dog" "Cat" "Mouse"])
+
+
 
 (defn animal-list []
   (let [animals @(re-frame/subscribe [::subs/animals])]
@@ -20,6 +22,8 @@
      [:label.label label]
      [:div.control
       [:input.input {:value @value
+                     :on-key-up #(println (.-key %))
+                     ;:on-key-up #(println (-> % .-target .-value))
                      :on-change #(re-frame/dispatch [::events/update-form id (-> % .-target .-value)])
                      :type "text" :placeholder "Text input"}]]]))
 
@@ -36,6 +40,8 @@
 (defn main-panel []
   (let [is-valid? @(re-frame/subscribe [::subs/form-is-valid? [:animal-name :animal-type]])]
     [:div.section
+     [:button.button.is-primary {:disabled false
+                                 :on-click #(re-frame/dispatch [::events/play-sound])} "Play !"]
      [animal-list]
      [text-input :animal-name "Animal Name"]
      [select-input :animal-type "Animal Type" animal-types]

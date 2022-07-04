@@ -1,5 +1,5 @@
 {
-	"name": "animal-form",
+	"name": "speak-n-spell",
 	"scripts": {
 		"watch": "npx shadow-cljs watch app browser-test karma-test",
 		"release": "npx shadow-cljs release app",
