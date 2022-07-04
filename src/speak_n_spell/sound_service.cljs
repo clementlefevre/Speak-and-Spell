@@ -1,9 +1,6 @@
 (ns speak-n-spell.sound-service
   (:require))
 
-
-
-
 (defn create-audio-elements [urls]
   (for [url  urls]
     (let [s (.createElement js/document "audio")]
@@ -11,12 +8,6 @@
       (set! (.-preload s) "auto")
       s)))
 
-(def urls ["sounds/ALPHABET/a.mp3"
-           "sounds/ALPHABET/b.mp3"
-           "sounds/ALPHABET/c.mp3"])
-
-(def audio-urls (create-audio-elements urls))
-(println "created :\n" (map  #(.-src %) audio-urls))
 
 ; https://clojurians.slack.com/archives/C03S1L9DN/p1580496131034600
 (defn play-audio [audio]
@@ -34,9 +25,7 @@
 (defn playback-mp3 [sounds]
   (println "count sounds :" (count sounds))
   (-> (play-audio (first sounds))
-        ;(.then #(play-audio (second @sounds))))))
       (.then (fn [] (remove-audio (first sounds))
-
                (let [rest-sounds  (rest sounds)]
                  (println "rest sounds :" (count rest-sounds))
                  (if (= 0 (count rest-sounds))
